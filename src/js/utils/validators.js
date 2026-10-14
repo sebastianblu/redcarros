@@ -1,0 +1,1 @@
+export const V={phone:s=>/^9\d{8}$/.test(String(s).replace(/\s/g,"")),name:s=>String(s).trim().length>=3,plate:s=>/^[A-Z0-9]{3}-?[A-Z0-9]{3}$/i.test(String(s).trim()),futureDate:(d,t)=>new Date(`${d}T${t||"00:00"}`)>new Date()};

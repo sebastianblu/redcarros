@@ -1,0 +1,91 @@
+{
+ "minHours": 2,
+ "kmPerHour": 15,
+ "extraKmPct": 0.6,
+ "returnAfterKm": 25,
+ "returnPct": 0.5,
+ "kmPerDay": 150,
+ "extraKmDayPct": 0.7,
+ "food": 70,
+ "lodge": 120,
+ "airportFee": 10,
+ "night": {
+  "from": 22,
+  "to": 5,
+  "pct": 0.2
+ },
+ "weekendPct": 0.1,
+ "urgentPct": 0.15,
+ "urgentHours": 24,
+ "range": 0.1,
+ "blocks": [
+  {
+   "hours": 5,
+   "disc": 0.05
+  },
+  {
+   "hours": 8,
+   "disc": 0.1
+  }
+ ],
+ "events": [
+  {
+   "id": "cena",
+   "label": "Cena / reuni\u00f3n",
+   "mult": 1
+  },
+  {
+   "id": "quince",
+   "label": "Quincea\u00f1ero",
+   "mult": 1.1
+  },
+  {
+   "id": "boda",
+   "label": "Boda",
+   "mult": 1.15
+  },
+  {
+   "id": "corp",
+   "label": "Evento corporativo",
+   "mult": 1.05
+  },
+  {
+   "id": "otro",
+   "label": "Otro evento",
+   "mult": 1
+  }
+ ],
+ "exclusivity": [
+  {
+   "id": "std",
+   "label": "Est\u00e1ndar",
+   "mult": 1
+  },
+  {
+   "id": "excl",
+   "label": "Exclusivo (+15%)",
+   "mult": 1.15
+  },
+  {
+   "id": "vip",
+   "label": "VIP (+30%)",
+   "mult": 1.3
+  }
+ ],
+ "coupons": [
+  {
+   "code": "REDCORP",
+   "pct": 0.1
+  },
+  {
+   "code": "BIENVENIDA",
+   "pct": 0.05
+  }
+ ],
+ "deposit": {
+  "dist": 0,
+  "hours": 0.3,
+  "trip": 0.5
+ },
+ "partnerCommission": 0.2
+}

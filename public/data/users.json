@@ -1,0 +1,23 @@
+[
+ {
+  "user": "dueno",
+  "name": "Propietario",
+  "role": "superadmin",
+  "hash": "75c70fcbc05e5634bf253aa2aa234dcf1102ae8fb6c1f4f4524e9149a0a8febb",
+  "active": true
+ },
+ {
+  "user": "hermano",
+  "name": "Hermano socio",
+  "role": "admin",
+  "hash": "ebd19066db337c09a9f1371b2ce817f88e1cfbaa7b4c4e3dfea1842b8b001682",
+  "active": true
+ },
+ {
+  "user": "operador",
+  "name": "Operador",
+  "role": "operador",
+  "hash": "6937b071cf07ddb15bc1f7df3f9ed5c420b51d78a42dd558fd31eae30b738a8e",
+  "active": true
+ }
+]

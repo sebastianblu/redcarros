@@ -1,0 +1,16 @@
+import {$,readForm} from "../../utils/formatters.js";
+import {waLink} from "../../services/whatsapp.service.js";import {toast} from "../../components/ui/toast.js";import {V} from "../../utils/validators.js";import {db} from "../../services/db.service.js";
+export function mountRegister(root,{config}){
+ root.innerHTML=`<form class="card form" id="rf"><label class="full">¿Qué deseas hacer?<select name="kind"><option>Sumar mi vehículo con mi propio conductor</option><option>Sumar mi vehículo y que la empresa ponga el conductor</option><option>Ofrecer solo mis servicios como conductor</option></select></label>
+ <label>Nombre completo<input name="name" required></label><label>Celular<input name="phone" inputmode="tel" required></label>
+ <label>Marca<input name="brand" placeholder="Toyota"></label><label>Modelo<input name="model"></label><label>Año<input type="number" name="year" min="2005"></label><label>Placa<input name="plate" placeholder="ABC-123"></label><label>Color<input name="color"></label>
+ <label>Tipo<select name="type"><option>Sedán</option><option>Hatchback</option><option>SUV</option><option>Camioneta</option><option>Minivan</option><option>Otro</option></select></label><label>Asientos<input type="number" name="seats" value="4" min="2"></label>
+ <label class="chk"><input type="checkbox" name="soat">SOAT vigente</label><label class="chk"><input type="checkbox" name="rt">Revisión técnica vigente</label>
+ <label class="chk"><input type="checkbox" name="lic">Licencia profesional</label><label class="chk"><input type="checkbox" name="auth">Autorización de transporte</label>
+ <label class="full">Comentarios<textarea name="obs" rows="2"></textarea></label><button class="btn full" type="submit">Enviar solicitud por WhatsApp</button><p class="note full">Comisión referencial de la empresa: 20% por servicio realizado (sujeta a acuerdo). Toda solicitud se revisa: se verifican documentos, seguros y autorizaciones antes de aceptar cualquier vehículo.</p></form>`;
+ $("#rf",root).onsubmit=e=>{e.preventDefault();const s=readForm(e.target),y=b=>b?"Sí":"No";
+  const err=!V.name(s.name)?"Escribe tu nombre completo":!V.phone(s.phone)?"Celular inválido: 9 dígitos y empieza con 9":s.s_kind==="x"?"":(!s.kind.includes("solo mis servicios")&&(!s.brand.trim()||!s.model.trim()))?"Indica marca y modelo del vehículo":(!s.kind.includes("solo mis servicios")&&!V.plate(s.plate))?"Placa inválida (ej. ABC-123)":(!s.kind.includes("solo mis servicios")&&(s.year<2005||s.year>new Date().getFullYear()+1))?"Año del vehículo inválido":(!s.kind.includes("solo mis servicios")&&(!s.soat||!s.rt))?"Se requiere SOAT y revisión técnica vigentes":"";
+  if(err)return toast(err,"error");
+  db.add("requests",{kind:"alianza",name:s.name,phone:s.phone,detail:`${s.kind} · ${s.brand} ${s.model} ${s.plate}`,status:"nueva"});toast("Solicitud enviada. Te contactaremos por WhatsApp.","ok");
+  window.open(waLink(config.whatsapp,[`Solicitud de registro en ${config.brand}`,`Interés: ${s.kind}`,`Nombre: ${s.name}`,`Celular: ${s.phone}`,`Vehículo: ${s.brand} ${s.model} ${s.year||""} · Placa ${s.plate} · ${s.color} · ${s.type} · ${s.seats} asientos`,`SOAT: ${y(s.soat)} | Rev. técnica: ${y(s.rt)} | Licencia prof.: ${y(s.lic)} | Autorización: ${y(s.auth)}`,`Comentarios: ${s.obs||"-"}`]),"_blank")};
+}

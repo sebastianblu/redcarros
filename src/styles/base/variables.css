@@ -1,0 +1,2 @@
+:root{--h:350;--bg:#0a0a0c;--card:#141418;--line:#2a2a30;--tx:#f4f4f5;--mu:#a1a1aa;--red:hsl(var(--h) 85% 46%);--red2:hsl(var(--h) 100% 62%);--glow:hsl(var(--h) 85% 46% / .28)}
+@media(prefers-color-scheme:light){:root{--bg:#f6f6f7;--card:#fff;--line:#e4e4e7;--tx:#111;--mu:#5b5b64}}
